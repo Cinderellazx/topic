@@ -25,4 +25,7 @@ router.post('/publishTopic',c_topic.publishTopic);
 // 退出登录
 router.get('/signout',c_topic.handleSignout);
 
+// 渲染话题详情页
+router.get('/detail/:topicId',c_topic.showDetailTopic);
+
 module.exports = router;

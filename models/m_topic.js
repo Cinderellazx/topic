@@ -22,5 +22,15 @@ const addTopic = (formdata,cb) => {
     })
 }
 
+exports.findDetailTopic = (id,cb)=> {
+    const sqlStr = "SELECT * FROM `topics` WHERE id = ?";
+    db.query(sqlStr,id,(err, data) => {
+        if(err) {
+            return cb(err);
+        }
+        cb(null,data);
+    })
+}
+
 exports.findAllTopics = findAllTopics;
 exports.addTopic = addTopic;

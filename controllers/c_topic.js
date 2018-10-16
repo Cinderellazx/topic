@@ -47,14 +47,34 @@ const publishTopic = (req,res) => {
             message: '添加成功'
         })
     });
-}
+};
 
 
 exports.handleSignout = (req,res) => {
     delete req.session.user;
     res.redirect('/signin');
-}
+};
 
+
+exports.showDetailTopic = (req,res) => {
+
+    const id = req.params.topicId;
+    m_topic.findDetailTopic(id,(err, data) => {
+        if(err) {
+            return res.send({
+                code: 500,
+                message: '服务器错误'
+            })
+        }
+
+        console.log(data);
+        
+        res.render('topic/show.html',{
+            topic: data[0],
+            user: req.session.user
+        })
+    })
+};
 
 
 module.exports.showTopic = showTopic;
