@@ -40,7 +40,7 @@ const handleSignin = (req,res) => {
                 });    
             }
             
-            
+            req.session.user = data[0];
             res.send({
                 code: 200,
                 message: '登录成功'

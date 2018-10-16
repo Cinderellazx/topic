@@ -16,5 +16,13 @@ router.post('/signin',c_user.handleSignin);
 // 渲染话题页
 router.get('/', c_topic.showTopic);
 
+// 渲染新建话题页
+router.get('/topic/create',c_topic.showCreateTopic);
+
+// 发布话题
+router.post('/publishTopic',c_topic.publishTopic);
+
+// 退出登录
+router.get('/signout',c_topic.handleSignout);
 
 module.exports = router;

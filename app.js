@@ -3,7 +3,7 @@ const express = require('express');
 const router = require('./router');
 const artTemplate = require('express-art-template');
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
 
 
 const app = express();
@@ -11,6 +11,12 @@ const app = express();
 // 配置包
 app.engine('html', require('express-art-template'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
+  
 
 // 统一处理静态资源
 app.use('/node_modules',express.static('./node_modules'));
