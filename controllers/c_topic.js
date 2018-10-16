@@ -67,7 +67,7 @@ exports.showDetailTopic = (req,res) => {
             })
         }
 
-        console.log(data);
+        // console.log(data);
         
         res.render('topic/show.html',{
             topic: data[0],

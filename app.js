@@ -4,7 +4,17 @@ const router = require('./router');
 const artTemplate = require('express-art-template');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
+const options = {
+	host: 'localhost',
+	port: 3306,
+	user: 'root',
+	password: 'root',
+	database: 'topic'
+};
+
+const sessionStore = new MySQLStore(options);
 
 const app = express();
 
@@ -12,9 +22,11 @@ const app = express();
 app.engine('html', require('express-art-template'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
+	key: 'session_cookie_name',
+	secret: 'session_cookie_secret',
+	store: sessionStore,
+	resave: false,
+	saveUninitialized: false
 }));
   
 
