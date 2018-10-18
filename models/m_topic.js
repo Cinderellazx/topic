@@ -40,6 +40,16 @@ exports.editTopic = (body,id,cb) => {
         }
         cb(null,data);
     })
+};
+
+exports.deleteTopic = (id,cb) => {
+    const sqlStr = "DELETE FROM `topics` WHERE id = ?";
+    db.query(sqlStr, id, (err,data) => {
+        if(err) {
+            return cb(err);
+        }
+        cb(null,data); 
+    })
 }
 
 exports.findAllTopics = findAllTopics;

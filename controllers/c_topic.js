@@ -114,6 +114,24 @@ exports.handleEdit = (req,res) => {
     })
 };
 
+exports.handleDelete = (req,res) => {
+    const id = req.params.topicId;
+    m_topic.deleteTopic(id, (err,data) => {
+        if(err) {
+            return res.send({
+                code: 500,
+                message: err.message
+            })
+        }
+        res.send({
+            code: 200,
+            message: '删除成功'
+        });
+        
+
+    })
+}
+
 module.exports.showTopic = showTopic;
 exports.showCreateTopic = showCreateTopic;
 exports.publishTopic = publishTopic;

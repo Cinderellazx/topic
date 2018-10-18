@@ -35,4 +35,7 @@ router.get('/topic/:topicId/edit',c_topic.showEdit);
 // 修改话题
 router.post('/editTopic/:topicId',c_topic.handleEdit);
 
+// 删除话题
+router.get('/topic/:topicId/delete',c_topic.handleDelete);
+
 module.exports = router;

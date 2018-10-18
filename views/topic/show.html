@@ -24,7 +24,7 @@
                     <h1>{{topic.title}}</h1>
                     {{if user && user.id == topic.userId}}
                     <a href="/topic/{{topic.id}}/edit">编辑</a>
-                    <a href="/topic/detail/delete" id="delete_topic">删除</a>
+                    <a href="/topic/{{topic.id}}/delete" id="delete_topic">删除</a>
                     {{/if}}
                     <hr> {{topic.content}}
                 </article>
@@ -60,6 +60,19 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script>
         // 点击删除
+
+        $('#delete_topic').on('click', function(e) {
+            e.preventDefault();
+
+            if(confirm('确定删除吗？')){
+                $.get('/topic/{{topic.id}}/delete',function(data) {
+                    if(data.code === 500) {
+                        return alert(data.message);
+                    }
+                    window.location.href = '/';
+                })
+            }
+        })
     </script>
 </body>
 
