@@ -38,6 +38,20 @@
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script>
+
+        $('form').on('submit',function(e) {
+            e.preventDefault();
+
+            const formdata = $(this).serialize();
+
+            $.post('/signup',formdata, function(data) {
+                if(data.code === 200) {
+                    window.location.href = '/signin';
+                }else {
+                    alert(data.message);
+                }
+            });
+        })
     </script>
 </body>
 

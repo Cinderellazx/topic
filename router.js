@@ -41,4 +41,6 @@ router.get('/topic/:topicId/delete',c_topic.handleDelete);
 // 渲染注册页面
 router.get('/signup',c_user.showSignup);
 
+// 处理注册数据
+router.post('/signup',c_user.handleSignup);
 module.exports = router;

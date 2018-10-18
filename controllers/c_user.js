@@ -95,6 +95,67 @@ const handleSignin = (req,res) => {
 
 exports.showSignup = (req,res) => {
     res.render('signup.html');
+};
+
+exports.handleSignup = (req,res) => {
+    const body = req.body;
+    m_user.checkEmail(body.email, function(err,data) {
+        if(err) {
+            return res.send({
+                code: 500,
+                message: err.message
+            })
+        }
+
+        if(data[0]){
+            return res.send({
+                code: 201,
+                message: '邮箱已注册'
+            })
+        }
+
+        m_user.checkNickname(body.nickname, function(err, data) {
+            if(err) {
+                return res.send({
+                    code: 500,
+                    message: err.message
+                })
+            }
+    
+            if(data[0]){
+                return res.send({
+                    code: 201,
+                    message: '昵称已占用'
+                })
+            }
+
+            m_user.addUser(body, (err, data) =>{
+                if(err) {
+                    return res.send({
+                        code: 500,
+                        message: err.message
+                    })
+                }
+                res.send({
+                    code: 200,
+                    message: '注册成功'
+                })
+                // res.redirect('/signin');
+            });
+        });
+
+
+    });
+
+    
+
+   
+    
+
 }
+
+
+
+
 module.exports.showSignin = showSignin;
 module.exports.handleSignin = handleSignin;

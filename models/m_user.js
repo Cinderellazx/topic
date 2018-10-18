@@ -14,4 +14,26 @@ const checkEmail = function (email,cb) {
     });
 };
 
+exports.checkNickname = function(nickname, cb) {
+    const sqlStr = "SELECT *FROM `users` WHERE nickname=?";
+    
+    db.query(sqlStr, nickname, (err,data) => {
+        if(err) {
+            return cb(err);
+        }
+        cb(null,data);
+    });
+}
+
+
+exports.addUser = function(body, cb) {
+    const sqlStr = "INSERT INTO `users` SET ?";
+
+    db.query(sqlStr,body, (err,data) =>{
+        if(err) {
+            return cb(err);
+        }
+        cb(null,data);
+    })
+}
 module.exports.checkEmail = checkEmail;
