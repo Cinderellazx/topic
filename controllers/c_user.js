@@ -93,6 +93,8 @@ const handleSignin = (req,res) => {
     // });
 };
 
-
+exports.showSignup = (req,res) => {
+    res.render('signup.html');
+}
 module.exports.showSignin = showSignin;
 module.exports.handleSignin = handleSignin;

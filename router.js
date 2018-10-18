@@ -38,4 +38,7 @@ router.post('/editTopic/:topicId',c_topic.handleEdit);
 // 删除话题
 router.get('/topic/:topicId/delete',c_topic.handleDelete);
 
+// 渲染注册页面
+router.get('/signup',c_user.showSignup);
+
 module.exports = router;
