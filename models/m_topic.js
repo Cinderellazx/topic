@@ -32,5 +32,15 @@ exports.findDetailTopic = (id,cb)=> {
     })
 }
 
+exports.editTopic = (body,id,cb) => {
+    const sqlStr = "UPDATE `topics` SET title=?,content=? WHERE id=?";
+    db.query(sqlStr,[body.title,body.content,id], (err,data) => {
+        if(err) {
+            return cb(err);
+        }
+        cb(null,data);
+    })
+}
+
 exports.findAllTopics = findAllTopics;
 exports.addTopic = addTopic;

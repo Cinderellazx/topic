@@ -77,6 +77,43 @@ exports.showDetailTopic = (req,res) => {
 };
 
 
+exports.showEdit = (req,res) => {
+    const id = req.params.topicId;
+
+    m_topic.findDetailTopic(id,(err, data) => {
+        if(err) {
+            return res.send({
+                code: 500,
+                message: '服务器错误'
+            })
+        }
+        
+        res.render('topic/edit.html',{
+            topic: data[0],
+            user: req.session.user
+        })
+    })
+};
+
+exports.handleEdit = (req,res) => {
+    const body = req.body;
+
+    const id = req.params.topicId;
+
+    m_topic.editTopic(body, id, (err,data) => {
+        if(err) {
+            return res.send({
+                code: 500,
+                message: err.message
+            })
+        }
+        res.send({
+            code: 200,
+            message: '修改成功'
+        })
+    })
+};
+
 module.exports.showTopic = showTopic;
 exports.showCreateTopic = showCreateTopic;
 exports.publishTopic = publishTopic;

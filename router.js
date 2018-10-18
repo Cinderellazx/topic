@@ -28,4 +28,11 @@ router.get('/signout',c_topic.handleSignout);
 // 渲染话题详情页
 router.get('/detail/:topicId',c_topic.showDetailTopic);
 
+
+// 进入修改页
+router.get('/topic/:topicId/edit',c_topic.showEdit);
+
+// 修改话题
+router.post('/editTopic/:topicId',c_topic.handleEdit);
+
 module.exports = router;

@@ -23,7 +23,7 @@
                 <article class="markdown-body">
                     <h1>{{topic.title}}</h1>
                     {{if user && user.id == topic.userId}}
-                    <a href="/topic/detail/edit">编辑</a>
+                    <a href="/topic/{{topic.id}}/edit">编辑</a>
                     <a href="/topic/detail/delete" id="delete_topic">删除</a>
                     {{/if}}
                     <hr> {{topic.content}}
